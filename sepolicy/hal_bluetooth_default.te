@@ -1,0 +1,2 @@
+allow hal_bluetooth_default device:chr_file ioctl;
+allow hal_bluetooth_default sysfs:file write;

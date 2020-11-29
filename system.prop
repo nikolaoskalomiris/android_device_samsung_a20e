@@ -1,0 +1,38 @@
+#
+# from device/samsung/a10/system.prop
+#
+#
+# system.prop for universal7885
+#
+ro.arch=exynos7884B
+ro.kernel.qemu=0
+ro.kernel.qemu.gles=1
+persist.demo.hdmirotationlock=false
+# read DS/SS property
+import /mnt/vendor/efs/factory.prop
+#Enable S.LSI USB settings
+dev.usbsetting.embedded=on
+#RILD debug level setting
+ro.debug_level=0x494d
+#Phone early start enable flag
+sys.config.phone_start_early=true
+#for DTV FullSeg SD Recording..
+oneseg.extSdCard.path=/storage/extSdCard
+#Status of softsim
+persist.sys.softsim.status=default,default
+persist.sys.softsim.netmode=3g
+persist.sys.softsim.type=default
+# Set csc support in OMX
+# If not set or set to 0, OMX will only use BT.601 colorspace.
+# Set to 1 if and only if BOARD_USES_EXYNOS_DATASPACE_FEATURE := true in BoardConfig.mk
+ro.vendor.cscsupported=1
+#for DTV FullSeg SD Recording..
+oneseg.extSdCard.path=/storage/extSdCard
+#Monetization app helo appsflyer setting
+ro.appsflyer.preinstall.path=/system/etc/pre_install.appsflyer
+#Monetization app Snapchat setting
+ro.channel.com.snapchat.android=SAMSUNG-PRELOAD-07012019
+#Netflix custom property for A10 OTA only
+ro.netflix.bsp_rev = A10-17438-1
+
+#

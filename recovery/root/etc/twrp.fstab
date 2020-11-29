@@ -1,0 +1,17 @@
+# Mount point    FStype            Device                                   Flags
+/boot            emmc             /dev/block/platform/13500000.dwmmc0/by-name/boot       flags=slotselect;display="Boot"
+/system          ext4             /dev/block/platform/13500000.dwmmc0/by-name/system     flags=slotselect;display="System"
+/vendor          ext4             /dev/block/platform/13500000.dwmmc0/by-name/vendor     flags=slotselect;backup=1;wipeingui;display="Vendor"
+/persist         ext4             /dev/block/platform/13500000.dwmmc0/by-name/persistent flags=backup=1;display="Persist"
+/misc	         emmc             /dev/block/platform/13500000.dwmmc0/by-name/misc
+/efs             emmc             /dev/block/platform/13500000.dwmmc0/by-name/efs	 flags=backup=1;display=EFS
+
+# These are for flashing img's
+/system_image    emmc             /dev/block/platform/13500000.dwmmc0/by-name/system     flags=slotselect;flashimg=1;backup=0;display="System"
+/vendor_image    emmc             /dev/block/platform/13500000.dwmmc0/by-name/vendor     flags=slotselect;flashimg=1;backup=0;display="Vendor"
+/boot_nosurvival emmc             /dev/block/platform/13500000.dwmmc0/by-name/boot       flags=slotselect;flashimg=1;backup=0;display="Boot (skip TWRP survival)"
+/modem           emmc             /dev/block/platform/13500000.dwmmc0/by-name/radio      flags=slotselect;flashimg=1;backup=1;display="Modem"
+
+/sdcard1         auto             /dev/block/mmcblk1p1 /dev/block/mmcblk1  flags=display="Micro SD";storage;wipeingui;removable;andsec
+/usb-otg         auto             /dev/block/sda1      /dev/block/sda      flags=display="USB-OTG";storage;wipeingui;removable
+

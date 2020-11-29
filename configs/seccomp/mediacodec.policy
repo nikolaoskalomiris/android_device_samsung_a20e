@@ -1,0 +1,5 @@
+
+# for H/W Codec
+getdents64: 1
+
+sched_setaffinity: 1

@@ -1,0 +1,55 @@
+# Mount debugfs on /sys/kernel/debug.
+allow init debugfs:dir mounton;
+
+# Mount EFS on /efs
+allow init efs_file:dir  mounton;
+
+# /dev/block/mmcblk0p[0-9]
+allow init emmcblk_device:blk_file rw_file_perms;
+
+allow init block_device:lnk_file { setattr };
+allow init tmpfs:lnk_file create_file_perms;
+
+# /sys/class/power_supply/battery and /sys/class/android_usb/android0
+allow init sysfs:dir r_dir_perms;
+
+# /data
+allow init sdcardd_exec:file r_file_perms;
+
+# sysfs iio:device[0-9]
+allow init sysfs:lnk_file setattr;
+
+# read/chown mDNIE symlinks
+allow init sysfs_mdnie_writable:lnk_file { read setattr };
+
+# read/chown camera firmware
+allow init sysfs_camera_writable:file { relabelto setattr };
+allow init sysfs_camera_writable:filesystem associate;
+
+allow init socket_device:sock_file { unlink create setattr };
+
+allow init sysfs_sec:lnk_file read;
+
+allow init block_device:blk_file write;
+allow init property_socket:sock_file write;
+
+allow init cameraserver:binder transfer;
+allow init dnsproxyd_socket:sock_file write;
+allow init fwk_sensor_hwservice:hwservice_manager find;
+allow init gps_device:chr_file { read write };
+allow init gps_vendor_data_file:file lock;
+allow init hwservicemanager:binder { call transfer };
+allow init ion_device:chr_file { ioctl open read };
+allow init radio_qos_device:chr_file { open read write };
+allow init rild:unix_stream_socket connectto;
+allow init same_process_hal_file:file execute;
+allow init self:netlink_generic_socket { bind create getattr read setopt write };
+allow init self:netlink_kobject_uevent_socket { bind create getopt read setopt };
+allow init sysfs_battery:file { open read };
+allow init sysfs_camera_writable:file { open read };
+allow init sysfs_vibrator:file read;
+allow init sysfs_wake_lock:file { open write };
+allow init sysfs_wifi_writable:file { open read write };
+allow init system_suspend_hwservice:hwservice_manager find;
+allow init tz_user_device:chr_file { ioctl open read write };
+allow init vendor_file:file execute;

@@ -1,0 +1,14 @@
+[
+    {
+	"remote": "github",
+        "repository": "LineageOS/android_hardware_samsung",
+        "target_path": "hardware/samsung",
+	"branch": "lineage-17.1"
+    },
+    {
+	"remote": "github",
+        "repository": "LineageOS/android_device_samsung_slsi_sepolicy",
+        "target_path": "device/samsung_slsi/sepolicy",
+	"branch": "lineage-17.1"
+    }
+]
