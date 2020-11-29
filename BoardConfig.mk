@@ -16,7 +16,6 @@
 
 LOCAL_PATH := device/samsung/a20e
 BUILD_TOP := $(shell pwd)
-export ANDROID_MAJOR_VERSION=q
 
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
