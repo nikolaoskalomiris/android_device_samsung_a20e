@@ -22,7 +22,7 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 TARGET_SCREEN_HEIGHT := 1560
 TARGET_SCREEN_WIDTH := 720
 
-PRODUCT_COPY_FILES += device/samsung/a20e/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+#PRODUCT_COPY_FILES += device/samsung/a20e/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # NFC
 PRODUCT_PACKAGES += \

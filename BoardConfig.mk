@@ -156,7 +156,7 @@ BOARD_HARDWARE_CLASS := \
     hardware/samsung/lineagehw
 
 # Recovery
-RECOVERY_VARIANT := twrp
+#RECOVERY_VARIANT := twrp
 TARGET_RECOVERY_FSTAB := device/samsung/a20e/rootdir/etc/fstab.exynos7884B.recovery
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
