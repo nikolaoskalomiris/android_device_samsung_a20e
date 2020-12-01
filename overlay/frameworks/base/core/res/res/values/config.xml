@@ -4,20 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-     <string name="db_default_journal_mode">PERSIST</string>
      <string name="db_default_sync_mode" translatable="false">NORMAL</string>
      <bool name="config_automatic_brightness_available">true</bool>
      <bool name="config_wifi_connected_mac_randomization_supported">true</bool>
      <bool name="config_carrier_volte_available">true</bool>
-     <bool name="config_carrier_volte_tty_supported">true</bool>
      <bool name="config_carrier_wfc_ims_available">true</bool>
      <bool name="config_cellBroadcastAppLinks">true</bool>
      <bool name="config_device_volte_available">true</bool>
      <bool name="config_device_vt_available">true</bool>
-     <bool name="config_device_wfc_ims_available">true</bool>
      <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
      <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-     <bool name="config_dynamic_bind_ims">false</bool>
      <bool name="config_enableWifiDisplay">true</bool>
      <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
      <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
@@ -29,7 +25,6 @@
      <bool name="config_swipe_up_gesture_setting_available">true</bool>
      <bool name="config_unplugTurnsOnScreen">true</bool>
      <integer name="config_longPressOnHomeBehavior">2</integer>
-     <string name="config_ethernet_iface_regex">eth\\d</string>
      <array name="config_autoBrightnessDisplayValuesNits">
         <item>10</item>
         <item>12</item>
@@ -111,38 +106,6 @@
         <item>5000</item>
         <item>19999</item>
         <item>20000</item>
-    </integer-array>
-    <integer-array name="config_dynamicHysteresisBrightLevels">
-        <item>5000</item>
-        <item>3000</item>
-        <item>3000</item>
-        <item>4000</item>
-        <item>3000</item>
-        <item>3000</item>
-    </integer-array>
-    <integer-array name="config_dynamicHysteresisDarkLevels">
-        <item>1000</item>
-        <item>500</item>
-        <item>900</item>
-        <item>700</item>
-        <item>500</item>
-        <item>500</item>
-    </integer-array>
-    <integer-array name="config_dynamicHysteresisLuxLevels">
-        <item>30</item>
-        <item>100</item>
-        <item>1000</item>
-        <item>10000</item>
-        <item>100000</item>
-    </integer-array>
-    <integer-array name="config_keyboardTapVibePattern">
-        <item>40</item>
-    </integer-array>
-    <integer-array name="config_longPressVibePattern">
-        <item>0</item>
-        <item>1</item>
-        <item>20</item>
-        <item>21</item>
     </integer-array>
     <integer-array name="config_screenBrightnessBacklight">
         <item>0</item>
@@ -694,23 +657,5 @@
     <string-array name="config_tether_wifi_regexs">
         <item>swlan0</item>
         <item>"softap.*"</item>
-    </string-array>
-    <string-array name="networkAttributes">
-        <item>wifi,1,1,1,-1,true</item>
-        <item>mobile,0,0,0,-1,true</item>
-        <item>mobile_mms,2,0,2,60000,true</item>
-        <item>mobile_supl,3,0,2,60000,true</item>
-        <item>mobile_dun,4,0,2,60000,true</item>
-        <item>mobile_hipri,5,0,3,60000,true</item>
-        <item>mobile_fota,10,0,2,60000,true</item>
-        <item>mobile_ims,11,0,2,60000,true</item>
-        <item>mobile_cbs,12,0,2,60000,true</item>
-        <item>wifi_p2p,13,1,0,-1,true</item>
-        <item>mobile_ia,14,0,2,-1,true</item>
-        <item>mobile_emergency,15,0,2,-1,true</item>
-    </string-array>
-    <string-array name="radioAttributes">
-        <item>1,1</item>
-        <item>0,1</item>
     </string-array>
 </resources>
