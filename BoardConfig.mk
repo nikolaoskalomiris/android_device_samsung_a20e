@@ -14,11 +14,9 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/a20e
-BUILD_TOP := $(shell pwd)
+DEVICE_PATH := device/samsung/a20e
 
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+BUILD_TOP := $(shell pwd)
 
 # Platform
 BOARD_VENDOR := samsung
@@ -29,7 +27,7 @@ TARGET_BOARD_PLATFORM_GPU := mali-g71
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 # Architecture
 TARGET_ARCH := arm64
@@ -72,12 +70,12 @@ BOARD_BUILD_DISABLED_VBMETAIMAGE := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_HAVE_SAMSUNG_BLUETOOTH := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-BOARD_CUSTOM_BT_CONFIG := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.tx
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+BOARD_CUSTOM_BT_CONFIG := $(DEVICE_PATH)/bluetooth/libbt_vndcfg.tx
 
 # HIDL
-DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/hidl/manifest.xml
-DEVICE_MATRIX_FILE := $(LOCAL_PATH)/hidl/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/hidl/manifest.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/hidl/compatibility_matrix.xml
 
 # Wifi
 WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
@@ -98,9 +96,6 @@ TARGET_HWC2_NO_SKIPVALIDATE := true
 # OTA Assert
 TARGET_OTA_ASSERT_DEVICE := a20e
 
-# Properties
-TARGET_SYSTEM_PROP += $(LOCAL_PATH)/system.prop
-
 # Partition Sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 37748736
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 55574528
@@ -117,6 +112,8 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_JOURNAL_SIZE := 0
 BOARD_VENDORIMAGE_EXTFS_INODE_COUNT := 4096
 BOARD_VNDK_VERSION := current
+PRODUCT_USE_VNDK_OVERRIDE := true
+PRODUCT_VENDOR_MOVE_ENABLED := true
 
 # Filesystem
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -140,14 +137,14 @@ BOARD_SEPOLICY_VERS := 30
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/lineage/sepolicy/exynos/sepolicy.mk
 include device/samsung_slsi/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/samsung/a20e/sepolicy
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += device/samsung/a20e/sepolicy/private
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 
 # System-as-root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
 # System.prop
-TARGET_SYSTEM_PROP += $(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # Vendor Security Patch
@@ -159,7 +156,7 @@ BOARD_HARDWARE_CLASS := \
 
 # Recovery
 #RECOVERY_VARIANT := twrp
-TARGET_RECOVERY_FSTAB := device/samsung/a20e/rootdir/etc/fstab.exynos7884B.recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.exynos7884B.recovery
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"

@@ -14,6 +14,13 @@
 # limitations under the License.
 #
 
+DEVICE_PATH := device/samsung/a20e
+
+PRODUCT_SOONG_NAMESPACES += \
+    device/samsung/a20e
+
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
+
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
@@ -72,6 +79,14 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     audio.r_submix.default \
     audio.usb.default
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    android.hardware.bluetooth.a2dp@1.0 \
+    audio.bluetooth.default \
+    android.hardware.bluetooth.audio@2.0 \
+    android.hardware.bluetooth.audio@2.0-impl
 
 # Camera
 PRODUCT_PACKAGES += \
