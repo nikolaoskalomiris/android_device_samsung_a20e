@@ -132,7 +132,7 @@ BOARD_ROOT_EXTRA_FOLDERS := \
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # SELinux
-BOARD_SEPOLICY_VERS := 30
+BOARD_SEPOLICY_VERS := 29.0
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/lineage/sepolicy/exynos/sepolicy.mk
 include device/samsung_slsi/sepolicy/sepolicy.mk
