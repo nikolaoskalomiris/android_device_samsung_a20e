@@ -21,4 +21,4 @@ type omr_file, file_type;
 type dqmdbg_file, file_type;
 
 # LiveDisplay
-type display_vendor_data_file, file_type, data_file_type, mlstrustedobject;
+type display_vendor_data_file, file_type, data_file_type;
