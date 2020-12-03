@@ -645,7 +645,6 @@
         <item>675</item>
         <item>700</item>
     </array>
-    </integer-array>
     <string-array name="config_tether_bluetooth_regexs">
         <item>bt-pan</item>
     </string-array>
