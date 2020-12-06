@@ -149,29 +149,8 @@ BOARD_HARDWARE_CLASS := \
     hardware/samsung/lineagehw
 
 # Recovery
-#RECOVERY_VARIANT := twrp
 BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.exynos7884B.recovery
-
-ifeq ($(RECOVERY_VARIANT),twrp)
-PRODUCT_COPY_FILES += device/samsung/a20e/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
-TW_THEME := portrait_hdpi
-RECOVERY_SDCARD_ON_DATA := true
-TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
-TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 150
-TW_HAS_DOWNLOAD_MODE := true
-TW_INCLUDE_NTFS_3G := true
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
-TW_INCLUDE_FB2PNG := true
-TW_INCLUDE_LIBRESETPROP := true
-TW_EXCLUDE_SUPERSU := true
-TW_EXCLUDE_TWRPAPP := true
-endif
 
 # DEX Pre-optimization
 ifeq ($(HOST_OS),linux)

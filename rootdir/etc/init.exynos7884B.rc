@@ -4,7 +4,6 @@ import init.gps.rc
 on early-init
     mkdir /efs 0771 radio system
     mkdir /mnt/vendor/efs 0771 radio system
-    mkdir /mnt/vendor/cpefs 0771 radio system
     mkdir /mnt/vendor/persist 0771 system system
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
@@ -45,20 +44,6 @@ on late-fs
 on post-fs
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
-# TEEGRIS service
-    mkdir /efs/tee 0700 system system
-    mkdir /mnt/vendor/efs/tee 0700 system system
-    mkdir /data/vendor/tee 0700 system system
-    mkdir /dev/socket/iwt 0770 system system
-    mkdir /dev/socket/iwt/ca 0770 system system
-    start tz_service
-    start tz_msg_recv
-    wait_for_prop vendor.tzdaemon Ready
-    setprop vendor.TEEGRIS.loaded true
-    write /proc/iccc_ready 1
-    start tzts_service
-    wait_for_prop vendor.tzts_daemon Ready
 
 on post-fs-data
 # TEEGRIS service
@@ -125,31 +110,19 @@ on post-fs-data
     chown system system /sys/class/backlight/panel/brightness
 
 # Permissions for LCD
-    chown system radio /sys/class/lcd/panel/manufacture_code
     chown system radio /sys/class/lcd/panel/lcd_type
-    chown system system /sys/class/lcd/panel/temperature
     chown system system /sys/class/lcd/panel/lux
-    chown system media_rw /sys/class/lcd/panel/adaptive_control
-    chown system system /sys/class/lcd/panel/alpm
-    chown system system /sys/class/lcd/panel/dpui
-    chown system system /sys/class/lcd/panel/dpui_dbg
-    chown system system /sys/devices/svc/OCTA/SVC_OCTA
-    chown system system /sys/devices/svc/OCTA/SVC_OCTA_CHIPID
-    chown system radio /sys/class/lcd/panel/xtalk_mode
-    chown system radio /sys/class/lcd/panel/enable_fd
 
 # Permissions for MDNIE
     chown system media_rw /sys/class/mdnie/mdnie/mode
     chown system media_rw /sys/class/mdnie/mdnie/scenario
-    chown system system /sys/class/mdnie/mdnie/accessibility
+    chown system system /sys/class/mdnie/mdnie/mdnie_ldu
     chown system system /sys/class/mdnie/mdnie/night_mode
     chown system system /sys/class/mdnie/mdnie/whiteRGB
     chown system system /sys/class/mdnie/mdnie/light_notification
-    chown system system /sys/class/mdnie/mdnie/color_lens
 
 # Permissions Camera
     mkdir /data/vendor/camera 0770 cameraserver system
-    chown cameraserver cameraserver /sys/kernel/mm/vmscan/mem_boost_mode
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_checkfw_user
@@ -215,6 +188,8 @@ on post-fs-data
     chmod 0770 /mnt/vendor/efs/bluetooth
     chmod 0660 /mnt/vendor/efs/bluetooth/bt_addr
 
+# Magnetic sensor YAS537 lib
+    mkdir /data/vendor/yas_lib 0770 system system
 
 # for WIFI MAC address
     mkdir /mnt/vendor/efs/wifi 0775 wifi root
@@ -224,6 +199,13 @@ on post-fs-data
     chmod 0664 /mnt/vendor/efs/wifi/.mac.cob
 
     write /sys/module/scsc_mx/parameters/disable_recovery_handling 0
+
+# Samsung Pay
+    mkdir /efs/pfw_data 0760 vendor_spay vendor_spay
+
+# MST/NFC Switch
+    chown vendor_spay system /dev/mst_ctrl
+    chmod 0660 /dev/mst_ctrl
     
 # setup cgroup freezer for freecess
     mkdir /dev/freezer
@@ -264,7 +246,7 @@ on post-fs-data
 on boot
 
 # SSWAP
-    write /proc/sys/vm/swappiness 160
+    write /proc/sys/vm/swappiness 130
 
 	setprop wifi.interface wlan0
 
@@ -317,11 +299,9 @@ on boot
 
     # mif dvfs node
     chown system system sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
-    chmod 0444 sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
+    chmod 0664 sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/available_frequencies
     chown system system sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/min_freq
     chmod 0664 sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/min_freq
-    chown root system /sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/scaling_devfreq_min
-    chmod 0664  /sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/scaling_devfreq_min
 
     # GPU dvfs node
     chown radio system /sys/devices/platform/11500000.mali/dvfs_table
@@ -411,7 +391,7 @@ on boot
 
 # For Prio Pinning
     write /dev/cpuset/top-app/prio_pinning 1
-	
+
 # Support DM logging
 #    chmod 0770 /system/bin/dmd
 
@@ -484,11 +464,43 @@ on fs
     chown system radio /sys/class/sensors/proximity_sensor/barcode_emul_en
     chown system radio /sys/class/sensors/proximity_sensor/prox_offset_pass
     chown system radio /sys/class/sensors/proximity_sensor/prox_trim
-    chown system radio /sys/class/sensors/proximity_sensor/prox_probe
     chown system radio /sys/class/sensors/proximity_sensor/modify_settings
     chown system radio /sys/class/sensors/proximity_sensor/settings_thd_low
     chown system radio /sys/class/sensors/proximity_sensor/settings_thd_high
-    chown system radio /sys/class/sensors/proximity_sensor/pre_test
+    chown system radio /sys/class/sensors/proximity_sensor/prox_probe
+    chown system radio /sys/class/sensors/proximity_sensor/check_far_state
+# Light_sensor
+    chown system radio /sys/class/sensors/light_sensor/lux
+    chown system radio /sys/class/sensors/light_sensor/raw_data
+    chown system radio /sys/class/sensors/light_sensor/vendor
+    chown system radio /sys/class/sensors/light_sensor/name
+    chown system radio /sys/class/sensors/light_sensor/adata0
+    chown system radio /sys/class/sensors/light_sensor/adata1
+    chown system radio /sys/class/sensors/light_sensor/adata2
+    chown system radio /sys/class/sensors/light_sensor/adata3
+    chown system radio /sys/class/sensors/light_sensor/adata4
+    chown system radio /sys/class/sensors/light_sensor/adata5
+    chown system radio /sys/class/sensors/light_sensor/astep
+    chown system radio /sys/class/sensors/light_sensor/again
+    chown system radio /sys/class/sensors/light_sensor/wtime
+    chown system radio /sys/class/sensors/light_sensor/als_ch_cfg
+    chown system radio /sys/class/sensors/light_sensor/fifo_level
+    chown system radio /sys/class/sensors/light_sensor/fifo_overflowx
+    chown system radio /sys/class/sensors/light_sensor/fifo_reset
+# Gyro_sensor
+    chown system radio /sys/class/sensors/gyro_sensor/power_on
+    chown system radio /sys/class/sensors/gyro_sensor/power_off
+    chown system radio /sys/class/sensors/gyro_sensor/temperature
+    chown system radio /sys/class/sensors/gyro_sensor/selftest
+    chown system radio /sys/class/sensors/gyro_sensor/selftest_dps
+    chown system radio /sys/class/sensors/gyro_sensor/vendor
+    chown system radio /sys/class/sensors/gyro_sensor/name
+# Magnetic_sensor
+    chown system radio /sys/class/sensors/magnetic_sensor/raw_data
+    chown system radio /sys/class/sensors/magnetic_sensor/vendor
+    chown system radio /sys/class/sensors/magnetic_sensor/name
+    chown system radio /sys/class/sensors/magnetic_sensor/selftest
+
 # Grip_sensor
     chown system radio /sys/class/sensors/grip_sensor/name
     chown system radio /sys/class/sensors/grip_sensor/vendor
@@ -581,11 +593,20 @@ service faced /system/bin/faced
     user system
     group system
 
-service cp_vername /vendor/bin/cp_vername.sh /sys/class/nfc_test/test
-    class core
-    user system
-    group system
-    oneshot
+
+
+# MobiCore startup
+#service mobicore /vendor/bin/mcDriverDaemon -r /vendor/app/mcRegistry/020a0000000000000000000000000000.drbin -r /vendor/app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
+#    user drmrpc
+#    group drmrpc
+#    class core
+#    seclabel u:r:tee:s0
+
+#service trustonic-proxy /system/bin/trustonic_tee_proxy
+#    class core
+#    user system
+#    group system drmrpc
+#    seclabel u:r:tee:s0
 
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
     class late_start
@@ -704,12 +725,9 @@ service swapon /sbin/sswap -s -f 1536
     group root
     seclabel u:r:sswap:s0
     oneshot
-
-# LPM
-service lpm /system/bin/charger
-    class sec-charger
-    user root
-    group system radio input
-    capabilities SYS_BOOT
-    critical
-
+    
+# Remosaic daemon of Camera
+service remosaic_daemon /vendor/bin/remosaic_daemon
+    class late_start
+    user cameraserver
+    group cameraserver
