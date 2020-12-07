@@ -150,7 +150,7 @@ BOARD_HARDWARE_CLASS := \
 
 # Recovery
 BOARD_HAS_DOWNLOAD_MODE := true
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.exynos7884B.recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 
 # DEX Pre-optimization
 ifeq ($(HOST_OS),linux)
