@@ -18,6 +18,9 @@ DEVICE_PATH := device/samsung/a20e
 
 BUILD_TOP := $(shell pwd)
 
+# Board
+TARGET_BOARD_NAME := SRPSB12A003
+
 # Platform
 BOARD_VENDOR := samsung
 TARGET_SOC := exynos7885
@@ -45,12 +48,16 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_SUPPORTS_64_BIT_APPS := true
 
 # Kernel
+BOARD_BOOT_HEADER_VERSION := 1
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := androidboot.hardware=exynos7885 androidboot.selinux=permissive
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board SRPSB12A003
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --board $(TARGET_BOARD_NAME)
+TARGET_KERNEL_ADDITIONAL_FLAGS := SEC_BUILD_OPTION_VTS=true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/samsung/universal7885
 TARGET_KERNEL_CONFIG := lineage-17.1_defconfig
@@ -136,8 +143,9 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 # System-as-root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
-# System.prop
+# Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # Vendor Security Patch
