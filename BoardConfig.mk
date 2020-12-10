@@ -61,7 +61,6 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset 
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --board $(TARGET_BOARD_NAME)
 TARGET_KERNEL_ADDITIONAL_FLAGS := SEC_BUILD_OPTION_VTS=true
-BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/samsung/universal7885
 TARGET_KERNEL_CONFIG := lineage-17.1_defconfig
@@ -128,12 +127,7 @@ TARGET_USES_MKE2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Root
-BOARD_ROOT_EXTRA_FOLDERS := \
-    efs \
-    dqmdbg \
-    keydata \
-    keyrefuge \
-    omr
+BOARD_ROOT_EXTRA_FOLDERS := efs omr
 
 # Ril
 ENABLE_VENDOR_RIL_SERVICE := true
@@ -162,8 +156,10 @@ BOARD_HARDWARE_CLASS := \
     hardware/samsung/lineagehw
 
 # Recovery
+BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
+TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 
 # DEX Pre-optimization
 ifeq ($(HOST_OS),linux)
