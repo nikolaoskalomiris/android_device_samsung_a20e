@@ -28,8 +28,10 @@
 on init
     write /sys/class/backlight/panel/brightness 200
 
-    setprop sys.usb.configfs 1
-
 on fs
-    wait /dev/block/platform/${ro.boot.bootdevice}
-    symlink /dev/block/platform/${ro.boot.bootdevice} /dev/block/bootdevice
+    write /sys/class/android_usb/android0/enable 0
+
+# Always start adbd on userdebug and eng builds
+on property:ro.debuggable=1
+    write /sys/class/android_usb/android0/enable 1
+    start adbd

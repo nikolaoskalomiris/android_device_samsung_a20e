@@ -1,19 +1,19 @@
 # <src>					 <mnt_point>     <type>  <mnt_flags>	                                                                        <fs_mgr_flags>
-/dev/block/bootdevice/by-name/sec_efs     /efs            ext4    nosuid,nodev,noatime,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait
-/dev/block/bootdevice/by-name/efs         /mnt/vendor/efs ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait
-/dev/block/bootdevice/by-name/boot        /boot           emmc    defaults                                                                                recoveryonly
-/dev/block/bootdevice/by-name/recovery    /recovery       emmc    defaults                                                                                recoveryonly
-/dev/block/bootdevice/by-name/cache       /cache          ext4    nosuid,noatime,nodev,barrier=1                                                          wait
-/dev/block/bootdevice/by-name/system      /		  ext4    ro,barrier=1,discard                                                                    wait
-/dev/block/bootdevice/by-name/userdata	  /data		  ext4	  noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic latemount,wait,check,fileencryption=ice,quota,reservedsize=128M,length=-20480
-/dev/block/bootdevice/by-name/cpefs       /mnt/vendor/cpefs ext4  noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait
-/dev/block/bootdevice/by-name/misc        /misc           emmc    defaults                                                                                defaults
-/dev/block/bootdevice/by-name/radio       /modem          emmc    defaults                                                                                defaults
-/dev/block/bootdevice/by-name/vendor	  /vendor         ext4	  ro,barrier=1,discard                                                                    wait,recoveryonly
-/dev/block/bootdevice/by-name/cp_debug    /cp_debug       emmc    defaults                                                                                defaults
-/dev/block/bootdevice/by-name/product	  /product	  ext4    defaults                                                                                defaults
-/dev/block/bootdevice/by-name/param       /param          emmc    defaults                                                                                defaults
-/dev/block/bootdevice/by-name/persist     /mnt/vendor/persist     ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic       wait
+/dev/block/platform/13500000.dwmmc0/by-name/sec_efs     /efs            ext4    nosuid,nodev,noatime,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait
+/dev/block/platform/13500000.dwmmc0/by-name/efs         /mnt/vendor/efs ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait
+/dev/block/platform/13500000.dwmmc0/by-name/boot        /boot           emmc    defaults                                                                                recoveryonly
+/dev/block/platform/13500000.dwmmc0/by-name/recovery    /recovery       emmc    defaults                                                                                recoveryonly
+/dev/block/platform/13500000.dwmmc0/by-name/cache       /cache          ext4    nosuid,noatime,nodev,barrier=1                                                          wait
+/dev/block/platform/13500000.dwmmc0/by-name/system      /		  ext4    ro,barrier=1,discard                                                                    wait
+/dev/block/platform/13500000.dwmmc0/by-name/userdata	  /data		  ext4	  noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic latemount,wait,check,fileencryption=ice,quota,reservedsize=128M,length=-20480
+/dev/block/platform/13500000.dwmmc0/by-name/cpefs       /mnt/vendor/cpefs ext4  noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait
+/dev/block/platform/13500000.dwmmc0/by-name/misc        /misc           emmc    defaults                                                                                defaults
+/dev/block/platform/13500000.dwmmc0/by-name/radio       /modem          emmc    defaults                                                                                defaults
+/dev/block/platform/13500000.dwmmc0/by-name/vendor	  /vendor         ext4	  ro,barrier=1,discard                                                                    wait,recoveryonly
+/dev/block/platform/13500000.dwmmc0/by-name/cp_debug    /cp_debug       emmc    defaults                                                                                defaults
+/dev/block/platform/13500000.dwmmc0/by-name/product	  /product	  ext4    defaults                                                                                defaults
+/dev/block/platform/13500000.dwmmc0/by-name/param       /param          emmc    defaults                                                                                defaults
+/dev/block/platform/13500000.dwmmc0/by-name/persist     /mnt/vendor/persist     ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic       wait
 
 # VOLD
 /dev/block/platform/13500000.dwmmc0/by-name/hidden	/preload	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	voldmanaged=preload:auto,check
