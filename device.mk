@@ -262,7 +262,7 @@ PRODUCT_COPY_FILES += \
 
 # Recovery
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/root/init.recovery.exynos7884B.rc:recovery/root/init.recovery.exynos7884B.rc
+    $(LOCAL_PATH)/recovery/root/init.recovery.exynos7884B.rc:root/init.recovery.exynos7884B.rc
 
 # Properties
 -include $(LOCAL_PATH)/vendor_prop.mk
