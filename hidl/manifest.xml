@@ -665,6 +665,6 @@
         <transport>hwbinder</transport>
     </hal>
     <sepolicy>
-        <version>26.0</version>
+        <version>29.0</version>
     </sepolicy>
 </manifest>
