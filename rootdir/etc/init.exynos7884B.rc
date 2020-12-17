@@ -726,8 +726,10 @@ service swapon /sbin/sswap -s -f 1536
     seclabel u:r:sswap:s0
     oneshot
     
-# Remosaic daemon of Camera
-service remosaic_daemon /vendor/bin/remosaic_daemon
-    class late_start
-    user cameraserver
-    group cameraserver
+# LPM
+service lpm /system/bin/charger
+    class sec-charger
+    user root
+    group system radio input
+    capabilities SYS_BOOT
+    critical
